@@ -3,31 +3,18 @@ using namespace std;
 #define ll long long
 int main()
 {
-    ll n, k, cnt, t;
+    ll n, k, cnt, t, cur;
     cin >> t;
     while(t--){
-        cnt = 0;
+        cnt = 0, cur = 1 ;
         cin >> n >> k;
-        if( n == 1) cout << 0 << "\n";
-        else if(k == 1) cout << n-1 << "\n";
-        else if((n/2) <= k){
-            ll p = 1;
-            while(p < n){
-                p <<= 1;
-                cnt++;
-            }
-            cout << cnt << "\n";
+        while(cur < n && cur < k){
+            cur *= 2;
+            cnt++;
         }
+        if(cur > n) cout << cnt << "\n";
         else {
-            ll p = 1;
-            while(p < k*2){
-                p <<= 1;
-                cnt++;
-            }
-            cnt += (n + k - 1 - (k * 2)) / k;
-
-            cout << cnt << "\n";
+           cout <<  cnt + (n - cur + k - 1) / k << "\n";
         }
-    }
-
+}
 }
